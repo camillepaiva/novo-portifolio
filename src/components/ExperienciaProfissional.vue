@@ -2,11 +2,11 @@
   <section class="experience_section">
     <header class="experience_intro">
       <p class="section_label">Experiencia Profissional</p>
-      <h2>Atuacao real em ambiente corporativo e entregas de produto.</h2>
+      <h2>Atuacao em desenvolvimento frontend, suporte tecnico e projetos.</h2>
       <p>
-        Minha trajetoria combina experiencia em UX/UI como freelancer e atuacao
-        atual com desenvolvimento frontend Vue.js em empresa de processamento de
-        dados.
+        Minha experiencia combina entrega de produto com Vue.js, integracao de
+        dados e contato direto com usuarios. Isso me permite manter equilibrio
+        entre qualidade tecnica, usabilidade e resultado pratico.
       </p>
     </header>
 
@@ -15,14 +15,27 @@
         <div class="timeline_dot"></div>
         <div class="timeline_content">
           <div class="item_head">
-            <h3>Dev Frontend Junior Vue.js</h3>
-            <span>Atual · 1 ano</span>
+            <h3>Desenvolvedora Frontend Junior / Pleno</h3>
+            <span>2025 - atual</span>
           </div>
-          <p class="item_company">Empresa de processamento de dados</p>
+          <p class="item_company">Egeo Processamento de Dados</p>
           <ul>
-            <li>Implementacao de interfaces Vue.js em fluxo de produto real.</li>
-            <li>Integracao com APIs e manutencao de componentes reutilizaveis.</li>
-            <li>Colaboracao com time via Jira, Bitbucket e code review.</li>
+            <li>
+              Desenvolvimento de aplicacoes web para geotecnologias com Vue.js
+              e componentes reutilizaveis.
+            </li>
+            <li>
+              Implementacao e manipulacao de mapas interativos com OpenLayers,
+              incluindo camadas, rotas e dados GeoJSON.
+            </li>
+            <li>
+              Integracao do frontend com APIs REST e servicos Firebase
+              (Authentication, Firestore e Storage).
+            </li>
+            <li>
+              Correcao de bugs, melhorias de performance, refatoracao de codigo
+              e validacao de funcionalidades.
+            </li>
           </ul>
         </div>
       </article>
@@ -31,14 +44,50 @@
         <div class="timeline_dot"></div>
         <div class="timeline_content">
           <div class="item_head">
-            <h3>Freelancer UX/UI</h3>
-            <span>Experiencia anterior</span>
+            <h3>Analista e Suporte Tecnico</h3>
+            <span>2024 - 2025</span>
           </div>
-          <p class="item_company">Projetos autorais e clientes</p>
+          <p class="item_company">Uni Telecom</p>
           <ul>
-            <li>Pesquisa, fluxo de telas e prototipacao no Figma.</li>
-            <li>Criacao de interfaces com foco em usabilidade e conversao.</li>
-            <li>Base de produto que hoje fortalece minhas entregas frontend.</li>
+            <li>
+              Atendimento e suporte tecnico a usuarios, com diagnostico e
+              resolucao de problemas em sistemas e ambientes computacionais.
+            </li>
+            <li>
+              Registro de ocorrencias, encaminhamento de solucoes e comunicacao
+              clara durante todo o atendimento.
+            </li>
+            <li>
+              Apoio na melhoria da experiencia do usuario e na continuidade dos
+              servicos operacionais.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline_item">
+        <div class="timeline_dot"></div>
+        <div class="timeline_content">
+          <div class="item_head">
+            <h3>Estagio - Laboratorio de Sistemas de Informacao</h3>
+            <span>2022 - 2024</span>
+          </div>
+          <p class="item_company">
+            Universidade Federal de Vicosa - Campus Rio Paranaiba (UFV-CRP)
+          </p>
+          <ul>
+            <li>
+              Apoio em atividades de desenvolvimento e manutencao de sistemas no
+              contexto academico.
+            </li>
+            <li>
+              Colaboracao em testes, levantamento de requisitos e organizacao de
+              documentacao tecnica.
+            </li>
+            <li>
+              Evolucao de base tecnica em desenvolvimento web, UX/UI e boas
+              praticas de software.
+            </li>
           </ul>
         </div>
       </article>
@@ -215,3 +264,4 @@ li::before {
   }
 }
 </style>
+

@@ -5,7 +5,7 @@
         <span class="brand_mark">CP</span>
         <span class="brand_text">
           <strong>Camille Paiva</strong>
-          <small>Frontend Vue.js + UI/UX</small>
+          <small>Frontend Vue.js, Mapas Web e UX/UI</small>
         </span>
       </router-link>
 

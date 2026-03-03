@@ -2,25 +2,27 @@
   <section class="hero_section">
     <div class="hero_grid">
       <article class="hero_content">
-        <p class="eyebrow">Frontend Developer + Product Design</p>
+        <p class="eyebrow">Frontend Vue.js + UX/UI + Geotecnologia</p>
         <h1>
-          Eu transformo ideias em interfaces digitais claras, rapidas e prontas
-          para escalar.
+          Desenvolvimento interfaces web com foco em usabilidade, dados e
+          qualidade de entrega.
         </h1>
 
         <p class="hero_description">
           Sou Camille Custodio de Paiva, de Bras Pires (MG), bacharela em
-          Sistemas de Informacao pela UFV. Ja atuei como freelancer em UX/UI e
-          atualmente trabalho ha 1 ano como Dev Frontend Junior Vue.js em uma
-          empresa de processamento de dados. Meu foco e construir produtos que
-          combinam experiencia visual forte com codigo bem estruturado.
+          Sistemas de Informacao pela UFV. Atualmente atuo como Desenvolvedora
+          Frontend Junior/Pleno na Egeo Processamento de Dados, construindo
+          aplicacoes com Vue.js, APIs REST, Firebase e mapas web com
+          OpenLayers. Minha trajetoria inclui suporte tecnico e base em UX/UI,
+          o que fortalece minha visao de produto e minha capacidade de resolver
+          problemas ponta a ponta.
         </p>
 
         <div class="hero_highlights">
-          <span>1 ano como Dev Frontend Junior Vue.js</span>
-          <span>Experiencia anterior em UX/UI freelancer</span>
-          <span>Bacharela em Sistemas de Informacao (UFV)</span>
-          <span>10+ projetos autorais publicados</span>
+          <span>Desenvolvedora Frontend Junior/Pleno (2025-atual)</span>
+          <span>Vue.js, OpenLayers, GeoJSON e APIs REST</span>
+          <span>Firebase (Auth, Firestore e Storage)</span>
+          <span>Bacharela em Sistemas de Informacao (UFV-CRP)</span>
         </div>
 
         <div class="hero_actions">
@@ -63,7 +65,7 @@
             fetchpriority="high"
           />
         </div>
-        <p class="availability">Disponivel para vagas e projetos frontend.</p>
+        <p class="availability">Disponivel para vagas frontend e projetos web.</p>
       </aside>
     </div>
 

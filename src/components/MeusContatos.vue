@@ -2,11 +2,12 @@
   <section class="contact_page">
     <header class="contact_intro">
       <p class="section_label">Contato</p>
-      <h1>Vamos conversar sobre sua proxima interface?</h1>
+      <h1>Vamos conversar sobre vagas frontend e projetos web?</h1>
       <p>
-        Se voce busca uma desenvolvedora frontend Vue.js com vivencia em
-        ambiente corporativo de processamento de dados e base forte em UX/UI,
-        eu posso contribuir no seu produto da ideia ate a entrega.
+        Se voce busca uma desenvolvedora frontend Vue.js com experiencia em
+        geotecnologias, integracao com APIs REST, Firebase e foco em
+        usabilidade, posso contribuir desde a ideacao ate a entrega em
+        producao.
       </p>
 
       <div class="contact_links">

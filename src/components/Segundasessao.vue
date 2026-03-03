@@ -1,20 +1,21 @@
 ﻿<template>
   <section class="skills_section">
     <article class="skills_intro">
-      <p class="section_label">Competencias</p>
+      <p class="section_label">Habilidades</p>
       <h2>
-        Competencias organizadas para refletir seu momento profissional atual.
+        Habilidades tecnicas e comportamentais aplicadas no dia a dia.
       </h2>
       <p>
-        Minha base combina UX/UI com desenvolvimento frontend. Hoje atuo em
-        ambiente corporativo com Vue.js e processos de time, mantendo foco em
-        qualidade tecnica, clareza visual e entregas consistentes.
+        Minha base combina UX/UI, desenvolvimento web e experiencia em produtos
+        com dados geoespaciais. Hoje atuo em ambiente corporativo com foco em
+        implementacao frontend, integracao de dados e melhoria continua de
+        qualidade.
       </p>
 
       <div class="summary_badges">
-        <span>1 ano como Dev Frontend Junior Vue.js</span>
-        <span>Experiencia anterior em UX/UI freelancer</span>
-        <span>Bacharela em Sistemas de Informacao (UFV)</span>
+        <span>Frontend Vue.js em ambiente corporativo</span>
+        <span>OpenLayers, GeoJSON e APIs REST</span>
+        <span>Base solida em UX/UI e usabilidade</span>
       </div>
     </article>
 
@@ -48,51 +49,51 @@ export default {
     return {
       competencyGroups: [
         {
-          label: "Implementacao",
-          title: "Stack Frontend",
+          label: "Desenvolvimento",
+          title: "Frontend Web",
           icon: "mdi-code-tags",
           items: [
-            "Vue.js",
-            "JavaScript (ES6+)",
-            "HTML5 e CSS3",
-            "Consumo de API REST",
-            "Firebase (Auth e Firestore)",
+            "HTML5, CSS3 e JavaScript",
+            "Vue.js e Vuetify",
+            "Componentes reutilizaveis",
+            "Responsividade e acessibilidade",
+            "Organizacao de interface e fluxo",
           ],
         },
         {
-          label: "Colaboracao",
-          title: "Ferramentas de Time",
-          icon: "mdi-account-group-outline",
+          label: "Integracao",
+          title: "APIs e Dados",
+          icon: "mdi-database-outline",
           items: [
-            "Jira",
-            "Bitbucket",
-            "Git e Pull Requests",
-            "Code Review",
-            "Scrum/Kanban",
+            "Integracao com APIs REST",
+            "Firebase (Auth, Firestore e Storage)",
+            "Mapas web com OpenLayers",
+            "Tratamento de dados GeoJSON",
+            "Nocoes de banco de dados",
           ],
         },
         {
-          label: "Qualidade",
-          title: "Boas Praticas de Entrega",
+          label: "Fluxo de Trabalho",
+          title: "Ferramentas e Qualidade",
           icon: "mdi-shield-check-outline",
           items: [
-            "Componentizacao",
-            "Responsividade",
-            "Acessibilidade",
-            "Performance frontend",
-            "Organizacao de codigo",
+            "Git, GitHub e Bitbucket",
+            "Jira e organizacao de backlog",
+            "Code review e versionamento",
+            "Correcao de bugs e refatoracao",
+            "Melhoria de performance frontend",
           ],
         },
         {
-          label: "Produto",
-          title: "Visao UX/UI Aplicada",
+          label: "Perfil",
+          title: "Competencias Profissionais",
           icon: "mdi-palette-outline",
           items: [
-            "Figma",
-            "Arquitetura de informacao",
-            "Prototipacao",
-            "Design System",
-            "UX Writing",
+            "Proatividade e senso de dono",
+            "Aprendizado rapido",
+            "Resolucao de problemas",
+            "Comunicacao com usuarios e time",
+            "Compromisso com qualidade de entrega",
           ],
         },
       ],
