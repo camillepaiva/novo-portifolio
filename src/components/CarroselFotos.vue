@@ -1,24 +1,49 @@
-<template>
-  <div class="carrossel-container">
-    <img
-      class="setas seta-esquerda"
-      :src="setaLefth"
+﻿<template>
+  <div ref="carouselContainer" class="carousel_container">
+    <button
+      class="arrow left"
       @click="anterior"
-      :disabled="imagemAtual === 0"
-    />
-    <div class="carrossel">
+      :disabled="isFirst"
+      aria-label="Imagem anterior"
+    >
+      <img :src="setaLefth" alt="Seta esquerda" />
+    </button>
+
+    <div class="carousel_frame">
       <img
-        :src="imagens[imagemAtual]"
-        alt="Imagem do Carrossel"
-        class="imagem"
+        v-if="isVisible"
+        :src="currentImage"
+        alt="Imagem do projeto"
+        class="image"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
       />
+      <div v-else class="image_placeholder">
+        <v-icon size="22">mdi-image-outline</v-icon>
+        <span>Carregando preview</span>
+      </div>
     </div>
-    <img
-      class="setas seta-direita"
-      :src="setaRigth"
+
+    <button
+      class="arrow right"
       @click="proximo"
-      :disabled="imagemAtual === imagens.length - 1"
-    />
+      :disabled="isLast"
+      aria-label="Proxima imagem"
+    >
+      <img :src="setaRigth" alt="Seta direita" />
+    </button>
+
+    <div v-if="imagens.length > 1" class="dots">
+      <button
+        v-for="(img, index) in imagens"
+        :key="img + index"
+        class="dot"
+        :class="{ active: index === imagemAtual }"
+        @click="goTo(index)"
+        :aria-label="`Ir para imagem ${index + 1}`"
+      ></button>
+    </div>
   </div>
 </template>
 
@@ -33,106 +58,200 @@ export default {
   data() {
     return {
       imagemAtual: 0,
+      isVisible: false,
+      observer: null,
       setaLefth: require("../assets/seta-lefth.png"),
       setaRigth: require("../assets/seta-right.png"),
     };
   },
+  computed: {
+    isFirst() {
+      return this.imagemAtual === 0;
+    },
+    isLast() {
+      return this.imagemAtual === this.imagens.length - 1;
+    },
+    currentImage() {
+      return this.imagens[this.imagemAtual] || "";
+    },
+  },
+  mounted() {
+    this.setupObserver();
+  },
+  beforeUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+  },
+  watch: {
+    imagens() {
+      this.imagemAtual = 0;
+    },
+  },
   methods: {
-    mounted() {
-      console.log("----CARROUSEL FOTOS");
-      console.log(this.imagens);
+    setupObserver() {
+      if (!window.IntersectionObserver) {
+        this.isVisible = true;
+        return;
+      }
+
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting) {
+            this.isVisible = true;
+            this.observer.disconnect();
+            this.observer = null;
+          }
+        },
+        {
+          rootMargin: "260px 0px",
+          threshold: 0.01,
+        }
+      );
+
+      this.observer.observe(this.$refs.carouselContainer);
     },
     anterior() {
-      if (this.imagemAtual > 0) {
-        this.imagemAtual--;
+      if (!this.isFirst) {
+        this.imagemAtual -= 1;
       }
     },
     proximo() {
-      if (this.imagemAtual < this.imagens.length - 1) {
-        this.imagemAtual++;
+      if (!this.isLast) {
+        this.imagemAtual += 1;
       }
+    },
+    goTo(index) {
+      this.imagemAtual = index;
     },
   },
 };
 </script>
 
 <style scoped>
-.carrossel-container {
+.carousel_container {
+  position: relative;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
+  min-height: 260px;
 }
 
-.carrossel {
-  width: 530px;
-  height: 300px;
+.carousel_frame {
+  width: 100%;
+  max-width: 530px;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(6, 10, 22, 0.55);
 }
 
-.imagem {
+.image {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  object-fit: cover;
 }
 
-.setas {
-  width: 30px;
-  height: auto;
+.image_placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  color: #a9bbdc;
+  background: linear-gradient(
+    165deg,
+    rgba(24, 37, 63, 0.55),
+    rgba(12, 22, 39, 0.58)
+  );
+}
+
+.image_placeholder span {
+  font-size: 12px;
+}
+
+.arrow {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 14px);
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 13, 26, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.arrow img {
+  width: 14px;
+}
+
+.arrow:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.left {
+  left: -10px;
   transform: translateY(-50%);
+}
+
+.right {
+  right: -10px;
+  transform: translateY(-50%);
+}
+
+.dots {
+  position: absolute;
+  bottom: -18px;
+  display: flex;
+  gap: 7px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.25);
   cursor: pointer;
 }
 
-.seta-esquerda {
-  left: -30px;
+.dot.active {
+  width: 22px;
+  background: #39b9f5;
 }
 
-.seta-direita {
-  right: -40px;
-}
-
-@media (max-width: 400px) {
-  .carrossel {
-    width: 95%;
-    height: auto;
-    display: flex;
-    justify-content: center;
+@media (max-width: 640px) {
+  .carousel_container {
+    min-height: 195px;
   }
 
-  .imagem {
-    width: 90%;
-    height: auto;
+  .arrow {
+    width: 30px;
+    height: 30px;
+    top: calc(50% - 18px);
   }
 
-  .seta-esquerda {
-    left: -5px;
-    width: 25px;
+  .left {
+    left: -6px;
   }
 
-  .seta-direita {
-    right: -5px;
-    width: 25px;
-  }
-}
-
-@media (min-width: 425px) and (max-width: 625px) {
-  .carrossel {
-    width: 95%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .seta-esquerda {
-    left: -5px;
-    width: 25px;
-  }
-
-  .seta-direita {
-    right: -5px;
-    width: 25px;
+  .right {
+    right: -6px;
   }
 }
 </style>

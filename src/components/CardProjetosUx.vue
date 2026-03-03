@@ -1,22 +1,48 @@
-<template>
-  <div class="carrosel_container">
-    <div class="descricao_projeto_container">
+﻿<template>
+  <article class="project_card ux">
+    <div class="project_info">
+      <p class="project_type">
+        <v-icon size="15" class="chip_icon">mdi-vector-square</v-icon>
+        Case UI/UX
+      </p>
       <h3>{{ titulo }}</h3>
-      <p>{{ descricao }}</p>
+      <p class="project_description">{{ descricao }}</p>
 
-      <button
-        class="botao_abrir_projeto botoes"
-        @click="redirectTo(linkProjeto)"
+      <div class="project_stack">
+        <span v-for="item in entregaveis" :key="item">{{ item }}</span>
+      </div>
+
+      <div v-if="resultados.length" class="project_impact">
+        <p class="impact_title">
+          <v-icon size="15">mdi-target</v-icon>
+          Resultado do case
+        </p>
+        <ul>
+          <li v-for="item in resultados" :key="item">
+            <v-icon size="14">mdi-check-circle</v-icon>
+            <span>{{ item }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <a
+        class="btn_primary"
+        :href="linkProjeto"
+        target="_blank"
+        rel="noreferrer"
       >
-        Abrir Projeto
-      </button>
+        <v-icon size="16">mdi-open-in-new</v-icon>
+        Ver case completo
+      </a>
     </div>
 
-    <CarroselFotos :imagens="imagens" class="carrosel" />
-  </div>
+    <CarroselFotos :imagens="imagens" class="project_carousel" />
+  </article>
 </template>
+
 <script>
 import CarroselFotos from "./CarroselFotos.vue";
+
 export default {
   components: {
     CarroselFotos,
@@ -34,142 +60,192 @@ export default {
       type: String,
       required: true,
     },
+    entregaveis: {
+      type: Array,
+      default: () => [],
+    },
+    resultados: {
+      type: Array,
+      default: () => [],
+    },
     linkProjeto: {
       type: String,
       required: true,
     },
   },
-
-  methods: {
-    redirectTo(link) {
-      window.open(link);
-    },
-  },
 };
 </script>
+
 <style scoped>
-.carrosel_container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 70px;
+.project_card {
+  position: relative;
+  overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: 560px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 26px;
+  border: 1px solid rgba(121, 195, 255, 0.2);
+  background: linear-gradient(
+    145deg,
+    rgba(8, 14, 28, 0.94),
+    rgba(10, 18, 34, 0.96) 60%,
+    rgba(7, 13, 24, 0.96)
+  );
+  box-shadow: 0 26px 50px rgba(5, 10, 22, 0.5);
 }
 
-.carrosel {
+.project_card::before {
+  content: "";
   position: absolute;
-  margin-left: 40%;
+  inset: -2px -45% auto auto;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(
+    circle,
+    rgba(66, 173, 243, 0.2),
+    rgba(66, 173, 243, 0)
+  );
+  pointer-events: none;
 }
-.descricao_projeto_container {
-  margin-top: 20px;
-  background-color: rgb(248, 248, 248);
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  border-radius: 10px;
-  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
-  padding-left: 40px;
-  padding-right: 20px;
-  width: 55%;
-  height: 450px;
+
+.project_card.ux {
+  border-color: rgba(119, 214, 255, 0.34);
+}
+
+.project_info {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
-  padding-top: 65px;
-  transition: transform 0.3s ease-in-out;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    165deg,
+    rgba(17, 28, 49, 0.86),
+    rgba(10, 17, 30, 0.92)
+  );
 }
 
-p {
-  width: 73%;
+.project_type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8bd8ff;
+  border-radius: 999px;
+  padding: 7px 12px;
+  border: 1px solid rgba(125, 212, 255, 0.34);
+  background: rgba(30, 136, 201, 0.16);
 }
 
-.descricao_projeto_container:hover {
-  transform: scale(1.02);
+h3 {
+  font-size: clamp(24px, 3.2vw, 34px);
+  line-height: 1.1;
 }
 
-.botoes button,
-.botoes img {
-  transition: transform 0.3s ease-in-out; /* Adiciona a transição */
+.project_description {
+  color: #b8c5e2;
 }
 
-.botoes button:hover,
-.botoes img:hover {
-  transform: scale(1.1);
+.project_stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.botao_abrir_projeto {
-  width: 150px;
-  height: 40px;
-  background-color: #090a0c;
-  border-radius: 10px;
-  color: #fff;
+.project_stack span {
+  font-size: 12px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: #d6e9ff;
+  background: rgba(59, 94, 133, 0.36);
+  border: 1px solid rgba(146, 192, 238, 0.28);
 }
 
-@media (max-width: 400px) {
-  .carrosel_container {
-    flex-direction: column;
-    width: 90%;
+.project_impact {
+  margin-top: -2px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.impact_title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #9edfff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project_impact ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project_impact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: #c8d5ef;
+  font-size: 13px;
+}
+
+.project_impact li .v-icon {
+  color: #6ed0ff;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
+.btn_primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  width: fit-content;
+  color: #f8fcff;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #31b3f1, #146fbe);
+  box-shadow: 0 14px 24px rgba(20, 111, 190, 0.36);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn_primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(7, 16, 31, 0.32);
+}
+
+.chip_icon {
+  color: #7bd8ff;
+}
+
+@media (max-width: 980px) {
+  .project_card {
+    grid-template-columns: 1fr;
+    padding: 16px;
   }
+}
 
-  .descricao_projeto_container {
+@media (max-width: 640px) {
+  .btn_primary {
     width: 100%;
-    padding: 15px;
-    height: auto;
-  }
-  p {
-    width: 100%;
-  }
-
-  .carrosel {
-    width: 80%;
-    margin-left: 0%;
-    margin-top: 65%;
-  }
-
-  .botao_abrir_projeto {
-    margin-top: 65%;
-    width: 100%;
-    height: 30px;
-    font-size: 12px;
-    border-radius: 5px;
-  }
-}
-@media (min-width: 425px) and (max-width: 625px) {
-  .carrosel_container {
-    flex-direction: column;
-    width: 95%;
-    margin-bottom: 30px;
-  }
-
-  .descricao_projeto_container {
-    width: 100%;
-    padding: 15px;
-    height: auto;
-  }
-  p {
-    width: 100%;
-  }
-
-  .carrosel {
-    width: 80%;
-    margin-left: 0%;
-    margin-top: 55%;
-  }
-
-  .botao_abrir_projeto {
-    margin-top: 65%;
-    width: 100%;
-    height: 30px;
-    font-size: 12px;
-    border-radius: 5px;
-  }
-}
-
-@media (min-width: 645px) and (max-width: 1024px) {
-  .botoes {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-
-  .descricao_projeto_container {
-    height: auto;
+    text-align: center;
   }
 }
 </style>

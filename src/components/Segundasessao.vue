@@ -1,143 +1,246 @@
-<template>
-  <div class="habilidades_container">
-    <div class="descricao_habilidades">
-      <h1>Minhas Habilidades</h1>
+﻿<template>
+  <section class="skills_section">
+    <article class="skills_intro">
+      <p class="section_label">Competencias</p>
+      <h2>
+        Competencias organizadas para refletir seu momento profissional atual.
+      </h2>
       <p>
-        Ao longo da minha trajetória, venho construindo uma bagagem sólida de
-        conhecimentos. Tenho mais de 2 anos de experiência como freelancer em
-        UI/UX design e agora estou me desafiando ainda mais, aprendendo cada vez
-        mais sobre as ferramentas do desenvolvimento frontend com Vue.js.
+        Minha base combina UX/UI com desenvolvimento frontend. Hoje atuo em
+        ambiente corporativo com Vue.js e processos de time, mantendo foco em
+        qualidade tecnica, clareza visual e entregas consistentes.
       </p>
-    </div>
 
-    <div class="cards_componente">
-      <div v-for="(nome, index) in meuCard.nomeCard" :key="index" class="card">
-        <img :src="meuCard.imgCard[index]" alt="Imagem do card" />
-        {{ nome }}
+      <div class="summary_badges">
+        <span>1 ano como Dev Frontend Junior Vue.js</span>
+        <span>Experiencia anterior em UX/UI freelancer</span>
+        <span>Bacharela em Sistemas de Informacao (UFV)</span>
       </div>
+    </article>
+
+    <div class="capability_grid">
+      <article
+        v-for="group in competencyGroups"
+        :key="group.title"
+        class="capability_card"
+      >
+        <p class="card_label">{{ group.label }}</p>
+        <div class="card_title">
+          <v-icon class="title_icon" size="18">{{ group.icon }}</v-icon>
+          <h3>{{ group.title }}</h3>
+        </div>
+
+        <ul>
+          <li v-for="item in group.items" :key="item">
+            <v-icon class="item_icon" size="14">mdi-check-circle</v-icon>
+            <span>{{ item }}</span>
+          </li>
+        </ul>
+      </article>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
-  name: "TerceiraSessao",
-
+  name: "SegundaSessao",
   data() {
     return {
-      meuCard: {
-        nomeCard: [
-          "HTML",
-          "CSS",
-          "JavaScript",
-          "VueJs",
-          "Git",
-          "Bootstrap",
-          "Adobe XD",
-          "Figma",
-          "Photoshop",
-        ],
-
-        imgCard: [
-          require("../assets/imgCards/html.png"),
-          require("../assets/imgCards/css.png"),
-          require("../assets/imgCards/javascript.png"),
-          require("../assets/imgCards/vuejs.png"),
-          require("../assets/imgCards/git.png"),
-          require("../assets/imgCards/bootstrap.png"),
-          require("../assets/imgCards/adobexd.png"),
-          require("../assets/imgCards/figma.png"),
-          require("../assets/imgCards/photoshop.png"),
-        ],
-      },
+      competencyGroups: [
+        {
+          label: "Implementacao",
+          title: "Stack Frontend",
+          icon: "mdi-code-tags",
+          items: [
+            "Vue.js",
+            "JavaScript (ES6+)",
+            "HTML5 e CSS3",
+            "Consumo de API REST",
+            "Firebase (Auth e Firestore)",
+          ],
+        },
+        {
+          label: "Colaboracao",
+          title: "Ferramentas de Time",
+          icon: "mdi-account-group-outline",
+          items: [
+            "Jira",
+            "Bitbucket",
+            "Git e Pull Requests",
+            "Code Review",
+            "Scrum/Kanban",
+          ],
+        },
+        {
+          label: "Qualidade",
+          title: "Boas Praticas de Entrega",
+          icon: "mdi-shield-check-outline",
+          items: [
+            "Componentizacao",
+            "Responsividade",
+            "Acessibilidade",
+            "Performance frontend",
+            "Organizacao de codigo",
+          ],
+        },
+        {
+          label: "Produto",
+          title: "Visao UX/UI Aplicada",
+          icon: "mdi-palette-outline",
+          items: [
+            "Figma",
+            "Arquitetura de informacao",
+            "Prototipacao",
+            "Design System",
+            "UX Writing",
+          ],
+        },
+      ],
     };
   },
 };
 </script>
 
 <style scoped>
-.habilidades_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-top: 70px;
-  width: 80%;
-  margin-left: 10%;
-  column-gap: 30px;
+.skills_section {
+  width: min(1150px, 92%);
+  margin: 0 auto;
+  padding: 18px 0 70px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 26px;
 }
 
-.cards_componente {
+.skills_intro {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 28px;
+  background: linear-gradient(
+    160deg,
+    rgba(10, 17, 30, 0.84),
+    rgba(8, 13, 24, 0.82)
+  );
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section_label {
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7dd4ff;
+}
+
+h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+}
+
+.summary_badges {
+  display: flex;
   flex-wrap: wrap;
-  width: 60%;
-  gap: 30px;
-  margin-bottom: 50px;
-  justify-content: flex-start;
+  gap: 8px;
 }
 
-img {
-  width: 80px;
+.summary_badges span {
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #d8e8ff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.card {
+.capability_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.capability_card {
+  border-radius: 20px;
+  border: 1px solid rgba(125, 194, 246, 0.28);
+  background: linear-gradient(
+    160deg,
+    rgba(11, 21, 38, 0.9),
+    rgba(8, 15, 28, 0.9)
+  );
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 12px;
+  min-height: 240px;
+}
+
+.card_label {
+  width: fit-content;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #93d8ff;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 212, 255, 0.35);
+  background: rgba(46, 168, 235, 0.14);
+  padding: 5px 10px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.card_title {
+  display: flex;
   align-items: center;
-  row-gap: 50px;
-  border-radius: 10px;
-  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
-  width: 150px;
-  height: 190px;
-  transition: transform 0.3s ease-in-out;
+  gap: 8px;
 }
 
-.card:hover {
-  transform: scale(1.1);
+.title_icon {
+  color: #7cd7ff;
 }
 
-.descricao_habilidades {
-  width: 35%;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  row-gap: 40px;
+  gap: 7px;
 }
 
-@media (max-width: 768px) {
-  .habilidades_container {
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    width: 90%;
-    margin-left: 5%;
-    align-items: center;
+li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #c9d7f0;
+}
+
+.item_icon {
+  color: #57c7ff;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 980px) {
+  .skills_section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .skills_intro {
+    padding: 20px;
   }
 
-  .descricao_habilidades {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    row-gap: 20px;
+  .capability_grid {
+    grid-template-columns: 1fr;
   }
 
-  .cards_componente {
-    width: 90%;
-    gap: 10px;
-    margin-top: 25px;
-  }
-
-  .card {
-    row-gap: 20px;
-    border-radius: 10px;
-
-    width: 48%;
-    height: 150px;
-  }
-  img {
-    width: 50px;
+  .capability_card {
+    min-height: auto;
   }
 }
 </style>

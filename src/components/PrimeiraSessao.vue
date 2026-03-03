@@ -1,78 +1,254 @@
-<template>
-  <div class="apresentacao_inicial_container">
-    <img class="minhafoto" :src="minhaFoto" alt="Minha Foto" />
-    <div class="text_container">
-      <p>Olá, me chamo</p>
-      <h1>Camille Custódio de Paiva</h1>
-      <p class="text_azul">Frontend VueJs / UI Designer / UX Designer</p>
-      <p>
-        Sou de Brás Pires, uma cidade do interior de Minas Gerais, e atualmente
-        curso Sistemas de Informação na UFV (Universidade Federal de Viçosa).
-        Com 22 anos, estou em busca de uma oportunidade como desenvolvedora
-        frontend com Vue.js, a fim de aprimorar minhas habilidades e construir
-        uma base sólida para alavancar minha carreira profissional.
-      </p>
-      <div class="icones">
-        <a
-          href="https://wa.me/5532998306120?text=Olá%20Camille,%20vi%20seu%20portfólio%20e%20fiquei%20muito%20interessado(a)%20nos%20seus%20projetos.%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20e%20como%20podemos%20trabalhar%20juntos!"
-          target="_blank"
-        >
-          <img class="icone" :src="whats"
-        /></a>
-        <a href="https://www.linkedin.com/in/camillepaiva" target="_blank"
-          ><img class="icone" :src="linkedin"
-        /></a>
-      </div>
+﻿<template>
+  <section class="hero_section">
+    <div class="hero_grid">
+      <article class="hero_content">
+        <p class="eyebrow">Frontend Developer + Product Design</p>
+        <h1>
+          Eu transformo ideias em interfaces digitais claras, rapidas e prontas
+          para escalar.
+        </h1>
+
+        <p class="hero_description">
+          Sou Camille Custodio de Paiva, de Bras Pires (MG), bacharela em
+          Sistemas de Informacao pela UFV. Ja atuei como freelancer em UX/UI e
+          atualmente trabalho ha 1 ano como Dev Frontend Junior Vue.js em uma
+          empresa de processamento de dados. Meu foco e construir produtos que
+          combinam experiencia visual forte com codigo bem estruturado.
+        </p>
+
+        <div class="hero_highlights">
+          <span>1 ano como Dev Frontend Junior Vue.js</span>
+          <span>Experiencia anterior em UX/UI freelancer</span>
+          <span>Bacharela em Sistemas de Informacao (UFV)</span>
+          <span>10+ projetos autorais publicados</span>
+        </div>
+
+        <div class="hero_actions">
+          <router-link to="/projetos" class="btn_primary">
+            Ver projetos em destaque
+          </router-link>
+          <a href="mailto:camillep590@hotmail.com" class="btn_secondary">
+            Falar por e-mail
+          </a>
+        </div>
+
+        <div class="social_links">
+          <a
+            href="https://wa.me/5532998306120?text=Ola%20Camille,%20vi%20seu%20portfolio%20e%20quero%20conversar%20sobre%20uma%20oportunidade."
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Conversar no WhatsApp"
+          >
+            <img class="icon" :src="whats" alt="WhatsApp" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/camillepaiva"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Abrir LinkedIn"
+          >
+            <img class="icon" :src="linkedin" alt="LinkedIn" />
+          </a>
+        </div>
+      </article>
+
+      <aside class="hero_visual">
+        <div class="photo_frame">
+          <img
+            class="my_photo"
+            :src="minhaFoto"
+            alt="Foto de Camille Paiva"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+        <p class="availability">Disponivel para vagas e projetos frontend.</p>
+      </aside>
     </div>
-  </div>
-  <div class="possicao_seta">
-    <img class="seta" :src="setaBaixo" alt="Seta Baixo" />
-  </div>
+
+    <div class="scroll_hint">
+      <span>Role para ver mais</span>
+      <img class="arrow" :src="setaBaixo" alt="Seta para baixo" />
+    </div>
+  </section>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      minhaFoto: require("../assets/minhaFoto.png"),
+      minhaFoto: require("../assets/minhaFoto.jpg"),
       setaBaixo: require("../assets/setasBaixo.png"),
-      whats: [require("../assets/icones/whatsapp.png")],
-      linkedin: [require("../assets/icones/linkedin.png")],
+      whats: require("../assets/icones/whatsapp.png"),
+      linkedin: require("../assets/icones/linkedin.png"),
     };
   },
 };
 </script>
 
-<style>
-.apresentacao_inicial_container {
+<style scoped>
+.hero_section {
+  width: min(1150px, 92%);
+  margin: 0 auto;
+  padding-top: 140px;
+  padding-bottom: 50px;
+}
+
+.hero_grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero_content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.eyebrow {
+  width: fit-content;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #90d8ff;
+  border: 1px solid rgba(125, 212, 255, 0.28);
+  background: rgba(46, 168, 235, 0.12);
+}
+
+h1 {
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1.1;
+  max-width: 14ch;
+}
+
+.hero_description {
+  max-width: 62ch;
+}
+
+.hero_highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero_highlights span {
+  border-radius: 999px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: #d8e4ff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hero_actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn_primary,
+.btn_secondary {
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 18px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+}
+
+.btn_primary {
+  background: linear-gradient(135deg, #36b6f2, #1178ca);
+  color: #f8fcff;
+  box-shadow: 0 16px 30px rgba(17, 120, 202, 0.38);
+}
+
+.btn_secondary {
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  color: #eaf0ff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btn_primary:hover,
+.btn_secondary:hover {
+  transform: translateY(-2px);
+}
+
+.social_links {
+  display: flex;
+  gap: 14px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.25s ease;
+}
+
+.icon:hover {
+  transform: scale(1.12);
+}
+
+.hero_visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.photo_frame {
+  padding: 14px;
+  border-radius: 34px;
+  background: linear-gradient(
+    155deg,
+    rgba(46, 168, 235, 0.55),
+    rgba(12, 20, 35, 0.2) 40%,
+    rgba(255, 255, 255, 0.1)
+  );
+  box-shadow: 0 28px 48px rgba(6, 12, 28, 0.5);
+}
+
+.my_photo {
+  width: clamp(220px, 24vw, 300px);
+  border-radius: 28px;
+  display: block;
+  filter: saturate(1.1);
+}
+
+.availability {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: #d5f5ff;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(117, 230, 255, 0.35);
+  background: rgba(18, 121, 190, 0.18);
+}
+
+.scroll_hint {
+  margin-top: 36px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  background-color: #090a0c;
-  color: #fff;
-  height: 640px;
-  column-gap: 150px;
-  padding-top: 50px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.minhafoto {
-  width: 270px;
-  border: 2px dotted #ffffff;
-  padding: 15px;
-  border-radius: 50%;
+.scroll_hint span {
+  font-size: 12px;
+  color: #a7b4d6;
 }
 
-.seta {
-  width: 50px;
+.arrow {
+  width: 42px;
   animation: bounce 1.5s infinite;
-}
-
-.possicao_seta {
-  display: flex;
-  justify-content: center;
-  padding: 2%;
 }
 
 @keyframes bounce {
@@ -81,88 +257,50 @@ export default {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
 }
 
-.text_container {
-  width: 35%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-}
-
-.text_azul {
-  color: #1b9be4;
-  font-size: 17px;
-}
-
-h1 {
-  font-size: 42px;
-}
-
-.icones {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  column-gap: 25px;
-}
-
-.icone {
-  transition: transform 0.3s ease;
-}
-
-.icone:hover {
-  transform: scale(1.2);
-}
-
-@media (max-width: 768px) {
-  .apresentacao_inicial_container {
-    display: flex;
-    flex-direction: column;
-    padding-top: 100px;
-    height: auto;
-    padding-bottom: 20px;
-  }
-
-  .minhafoto {
-    width: 150px;
-    padding: 10px;
-    margin-bottom: 30px;
-  }
-
-  .text_container {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-  }
-
-  p {
-    font-size: 12px;
-  }
-
-  .text_azul {
-    font-size: 10px;
+@media (max-width: 950px) {
+  .hero_grid {
+    grid-template-columns: 1fr;
   }
 
   h1 {
-    font-size: 20px;
-  }
-  .icones {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-  }
-  .icone {
-    width: 20px;
-    height: 20px;
+    max-width: 100%;
   }
 
-  .seta {
-    width: 30px;
+  .hero_visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero_section {
+    padding-top: 110px;
+    padding-bottom: 35px;
+  }
+
+  .hero_content {
+    gap: 16px;
+  }
+
+  .hero_highlights span {
+    font-size: 12px;
+  }
+
+  .btn_primary,
+  .btn_secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .scroll_hint {
+    margin-top: 30px;
+  }
+
+  .arrow {
+    width: 34px;
   }
 }
 </style>
