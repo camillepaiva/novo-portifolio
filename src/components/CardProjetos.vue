@@ -47,21 +47,26 @@
       </div>
     </div>
 
-    <CarroselFotos :imagens="imagens" class="project_carousel" />
+    <ProjectLivePreview
+      :titulo="titulo"
+      :preview-url="linkProjeto"
+      :imagens="imagens"
+      class="project_carousel"
+    />
   </article>
 </template>
 
 <script>
-import CarroselFotos from "./CarroselFotos.vue";
+import ProjectLivePreview from "./ProjectLivePreview.vue";
 
 export default {
   components: {
-    CarroselFotos,
+    ProjectLivePreview,
   },
   props: {
     imagens: {
       type: Array,
-      required: true,
+      default: () => [],
     },
     titulo: {
       type: String,

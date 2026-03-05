@@ -5,8 +5,8 @@
       <h1>Projetos que mostram minha evolucao em desenvolvimento e produto.</h1>
       <p>
         Aqui voce encontra projetos de frontend com Vue.js e cases de UI/UX.
-        Em ambos, meu foco e resolver problema real com clareza visual,
-        navegacao intuitiva e codigo que pode crescer junto com o produto.
+        Nos projetos de frontend, o preview e gerado automaticamente pela URL
+        da demo para manter o portfolio sempre atualizado sem refazer imagem.
       </p>
     </header>
 
@@ -64,125 +64,99 @@ export default {
         {
           titulo: "Shopping Bag",
           descricao:
-            "E-commerce com consumo de API REST, controle de carrinho e fluxo de compra. O projeto usa Vuex para estado global e Vue Router para navegacao entre etapas.",
+            "E-commerce SPA com catalogo, carrinho persistente e checkout em etapas. Arquitetura com Vuex para manter consistencia entre listagem, detalhe e resumo de compra.",
           tecnologias: ["Vue.js", "Vuex", "Vue Router", "API REST"],
           impactos: [
-            "Fluxo de carrinho com atualizacao de quantidade em tempo real.",
-            "Estado centralizado para manter previsibilidade de dados.",
-            "Navegacao entre etapas com experiencia consistente.",
+            "Carrinho com atualizacao instantanea de quantidade e total.",
+            "Estado centralizado para previsibilidade em todo o fluxo.",
+            "Estrutura pronta para evoluir regras de promocao e frete.",
           ],
-          imagens: [
-            require("@/assets/projetos/shoppingBag/img1.png"),
-            require("@/assets/projetos/shoppingBag/img2.png"),
-            require("@/assets/projetos/shoppingBag/img3.png"),
-          ],
+          imagens: [],
           linkProjeto: "https://shopping-bag-psi.vercel.app/#/",
           linkGit: "https://github.com/CamillePaivaa/Shopping-Bag",
         },
         {
+          titulo: "Lista de Compras",
+          descricao:
+            "Aplicacao colaborativa com autenticacao e persistencia no Firebase para organizar compras do dia a dia. Inclui compartilhamento rapido de lista via WhatsApp.",
+          tecnologias: ["Vue.js", "Firebase", "Autenticacao", "UX Writing"],
+          impactos: [
+            "Login por usuario para separar listas com seguranca.",
+            "Dados persistidos em nuvem para uso recorrente.",
+            "Compartilhamento da lista em um clique para colaboracao.",
+          ],
+          imagens: [],
+          linkProjeto: "https://minha-lista-de-compras-lac.vercel.app/lista-produtos",
+          linkGit: "https://github.com/CamillePaivaa/Minha-Lista-de-Compras",
+        },
+        {
           titulo: "Catalogo de Filmes",
           descricao:
-            "Aplicacao que integra API de filmes para listar conteudos, exibir detalhes e permitir favoritos. A interface foi desenhada para navegacao rapida em mobile e desktop.",
+            "Aplicacao para descoberta de filmes com busca, detalhes e lista de favoritos persistida no navegador. Interface otimizada para consulta rapida em mobile e desktop.",
           tecnologias: ["Vue.js", "API REST", "Local Storage", "Responsividade"],
           impactos: [
-            "Consulta dinamica de titulos e detalhes direto da API.",
-            "Persistencia de favoritos para continuidade da experiencia.",
-            "Interface adaptada para uso rapido em mobile e desktop.",
+            "Consumo de API com renderizacao dinamica de conteudo.",
+            "Favoritos salvos localmente para continuidade da experiencia.",
+            "Navegacao objetiva com foco em velocidade de exploracao.",
           ],
-          imagens: [
-            require("@/assets/projetos/catalogoFilmes/img1.png"),
-            require("@/assets/projetos/catalogoFilmes/img2.png"),
-          ],
+          imagens: [],
           linkProjeto: "https://catalogodefilmeconsimindoapi.vercel.app/",
           linkGit:
             "https://github.com/CamillePaivaa/Cat-logo-de-Filmes_consumindoApi",
         },
         {
-          titulo: "Lista de Compras",
-          descricao:
-            "Projeto com autenticacao, persistencia no Firebase e compartilhamento de lista via WhatsApp. A proposta foi criar uma experiencia simples para uso cotidiano.",
-          tecnologias: ["Vue.js", "Firebase", "Autenticacao", "UX Writing"],
-          impactos: [
-            "Autenticacao para manter listas vinculadas a cada usuario.",
-            "Persistencia de dados no Firebase para uso recorrente.",
-            "Compartilhamento rapido por WhatsApp para colaboracao familiar.",
-          ],
-          imagens: [
-            require("@/assets/projetos/listaCompras/img1.png"),
-            require("@/assets/projetos/listaCompras/img2.png"),
-            require("@/assets/projetos/listaCompras/img3.png"),
-          ],
-          linkProjeto: "https://minha-lista-de-compras-lac.vercel.app/lista-produtos",
-          linkGit: "https://github.com/CamillePaivaa/Minha-Lista-de-Compras",
-        },
-        {
           titulo: "Pet Mania",
           descricao:
-            "Site de servicos para pet shop com fluxo de agendamento, apresentacao de servicos e prova social. O objetivo foi facilitar a escolha e reduzir atrito na conversao.",
+            "Site para pet shop com apresentacao de servicos, prova social e fluxo de agendamento. O foco foi reduzir friccao de contato e aumentar clareza da oferta.",
           tecnologias: ["Vue.js", "UI Components", "Formulario", "Mobile First"],
           impactos: [
-            "Fluxo de agendamento pensado para reduzir friccao de contato.",
-            "Organizacao visual dos servicos para decisao mais rapida.",
-            "Prova social aplicada para reforco de confianca.",
+            "Arquitetura de conteudo voltada para conversao local.",
+            "Fluxo de agendamento direto com menos etapas de decisao.",
+            "Interface mobile first para publico que acessa pelo celular.",
           ],
-          imagens: [
-            require("@/assets/projetos/petMania/img1.png"),
-            require("@/assets/projetos/petMania/img2.png"),
-            require("@/assets/projetos/petMania/img3.png"),
-            require("@/assets/projetos/petMania/img4.png"),
-          ],
+          imagens: [],
           linkProjeto: "https://pet-mania-vue-js.vercel.app",
           linkGit: "https://github.com/CamillePaivaa/Pet-Mania_VueJs",
         },
         {
           titulo: "Jogo de Perguntas",
           descricao:
-            "Game interativo com perguntas dinamicas vindas de API externa e regra de tempo por rodada. O foco foi performance, fluidez de interacao e rejogabilidade.",
+            "Game web com perguntas vindas de API externa, controle de tempo por rodada e pontuacao progressiva. Projeto orientado a interacao rapida e alta rejogabilidade.",
           tecnologias: ["Vue.js", "API REST", "Timer", "Gerenciamento de estado"],
           impactos: [
-            "Perguntas dinamicas para aumentar variacao da jogabilidade.",
+            "Perguntas dinamicas para variacao constante da partida.",
             "Timer por rodada para reforcar ritmo e engajamento.",
-            "Regras de pontuacao claras com feedback imediato.",
+            "Feedback imediato de acerto e pontuacao ao usuario.",
           ],
-          imagens: [
-            require("../assets/projetos/jogoPerguntas/img1.png"),
-            require("../assets/projetos/jogoPerguntas/img2.png"),
-            require("../assets/projetos/jogoPerguntas/img3.png"),
-          ],
+          imagens: [],
           linkProjeto: "https://jogo-de-perguntas-com-api.vercel.app/",
           linkGit: "https://github.com/CamillePaivaa/Jogo-de-Perguntas-Com-Api",
         },
         {
           titulo: "Lista de Tarefas",
           descricao:
-            "To-do list com criacao, edicao e remocao de tarefas em tempo real. O projeto reforca boas praticas de componentizacao e interacao orientada ao usuario.",
+            "Aplicacao de produtividade com CRUD completo para tarefas, edicao inline e remocao simplificada. Estrutura de componentes pensada para manutencao e evolucao.",
           tecnologias: ["Vue.js", "CRUD", "Componentes", "Usabilidade"],
           impactos: [
-            "Fluxo CRUD completo para organizacao diaria de tarefas.",
-            "Interacoes objetivas para reduzir cliques desnecessarios.",
-            "Estrutura de componentes com foco em manutencao simples.",
+            "Fluxo rapido de criacao e atualizacao de tarefas.",
+            "Interacoes reduzidas para diminuir atrito no uso diario.",
+            "Base organizada para adicionar filtros e categorias.",
           ],
-          imagens: [
-            require("../assets/projetos/listaTarefas/img1.png"),
-            require("../assets/projetos/listaTarefas/img2.png"),
-          ],
+          imagens: [],
           linkProjeto: "https://lista-de-tarefas-tan-zeta.vercel.app/",
           linkGit: "https://github.com/CamillePaivaa/Lista-de-Tarefas",
         },
         {
           titulo: "Self Service Lunch",
           descricao:
-            "Interface de autoatendimento para fast food com selecao de itens, calculo de total e experiencia guiada. O desafio foi manter clareza com multiplas escolhas.",
+            "Interface de autoatendimento para montagem de pedidos em fast food, com selecao de itens e calculo automatico de total. Experiencia guiada para reduzir erros.",
           tecnologias: ["Vue.js", "Logica de negocio", "UX Flow", "Responsividade"],
           impactos: [
-            "Calculo de total integrado ao fluxo de selecao de itens.",
-            "Experiencia guiada para reduzir erro na montagem do pedido.",
-            "Layout responsivo para operacao em telas diversas.",
+            "Total atualizado conforme combinacoes escolhidas.",
+            "Fluxo guiado para diminuir erro na finalizacao do pedido.",
+            "Layout responsivo para operacao em diferentes tamanhos de tela.",
           ],
-          imagens: [
-            require("@/assets/projetos/selfService/img1.png"),
-            require("@/assets/projetos/selfService/img2.png"),
-          ],
+          imagens: [],
           linkProjeto: "https://self-service-lunch.vercel.app/",
           linkGit: "https://github.com/CamillePaivaa/Self-Service-Lunch",
         },

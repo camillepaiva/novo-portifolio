@@ -15,7 +15,7 @@
         <div class="timeline_dot"></div>
         <div class="timeline_content">
           <div class="item_head">
-            <h3>Desenvolvedora Frontend Junior / Pleno</h3>
+            <h3>Desenvolvedora Frontend</h3>
             <span>2025 - atual</span>
           </div>
           <p class="item_company">Egeo Processamento de Dados</p>
