@@ -50,6 +50,7 @@
     <ProjectLivePreview
       :titulo="titulo"
       :preview-url="linkProjeto"
+      :preview-version="previewVersion"
       :imagens="imagens"
       class="project_carousel"
     />
@@ -87,6 +88,10 @@ export default {
     linkProjeto: {
       type: String,
       required: true,
+    },
+    previewVersion: {
+      type: String,
+      default: "",
     },
     linkGit: {
       type: String,

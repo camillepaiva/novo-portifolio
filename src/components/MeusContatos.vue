@@ -11,7 +11,7 @@
       </p>
 
       <div class="contact_links">
-        <a href="mailto:camillep590@hotmail.com">camillep590@hotmail.com</a>
+        <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a>
         <a href="https://www.linkedin.com/in/camillepaiva" target="_blank" rel="noreferrer">
           LinkedIn
         </a>
@@ -26,7 +26,13 @@
     </header>
 
     <v-container class="form_wrapper">
-      <v-form ref="formRef" v-model="isValid" lazy-validation class="form_container">
+      <v-form
+        ref="formRef"
+        v-model="isValid"
+        lazy-validation
+        class="form_container"
+        @submit.prevent="submitForm"
+      >
         <v-text-field
           label="Nome"
           v-model="formData.name"
@@ -52,7 +58,12 @@
           rows="5"
         ></v-textarea>
 
-        <v-btn class="btn_send" :loading="isSending" @click="submitForm">
+        <v-btn
+          class="btn_send"
+          :loading="isSending"
+          :disabled="isSending"
+          type="submit"
+        >
           Enviar mensagem
         </v-btn>
       </v-form>
@@ -61,7 +72,16 @@
 </template>
 
 <script>
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
+
+const CONTACT_EMAIL =
+  process.env.VUE_APP_CONTACT_RECEIVER_EMAIL || "camillep590@hotmail.com";
+const EMAILJS_SERVICE_ID =
+  process.env.VUE_APP_EMAILJS_SERVICE_ID || "service_md1x22b";
+const EMAILJS_TEMPLATE_ID =
+  process.env.VUE_APP_EMAILJS_TEMPLATE_ID || "template_uin992w";
+const EMAILJS_PUBLIC_KEY =
+  process.env.VUE_APP_EMAILJS_PUBLIC_KEY || "e4spiPqgfETLx7HX7";
 
 export default {
   data() {
@@ -73,6 +93,7 @@ export default {
       },
       isValid: false,
       isSending: false,
+      contactEmail: CONTACT_EMAIL,
       nameRules: [(v) => !!v || "Informe seu nome"],
       emailRules: [
         (v) => !!v || "Informe seu e-mail",
@@ -87,8 +108,10 @@ export default {
   methods: {
     async submitForm() {
       const validation = await this.$refs.formRef.validate();
+      const isFormValid =
+        typeof validation === "boolean" ? validation : validation.valid;
 
-      if (!validation.valid) {
+      if (!isFormValid) {
         alert("Revise os campos antes de enviar.");
         return;
       }
@@ -103,19 +126,76 @@ export default {
 
       try {
         await emailjs.send(
-          "service_md1x22b",
-          "template_uin992w",
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
           templateParams,
-          "e4spiPqgfETLx7HX7"
+          {
+            publicKey: EMAILJS_PUBLIC_KEY,
+          }
         );
         alert("Mensagem enviada com sucesso.");
         this.resetForm();
       } catch (error) {
-        console.error("Falha ao enviar", error);
-        alert("Nao foi possivel enviar agora. Tente novamente em alguns minutos.");
+        const reason = this.getEmailErrorMessage(error);
+        console.error("Falha ao enviar", reason, error);
+        const shouldOpenMailClient = window.confirm(
+          `${reason}\n\nDeseja abrir seu app de e-mail para enviar manualmente?`
+        );
+        if (shouldOpenMailClient) {
+          this.sendByMailto();
+        }
       } finally {
         this.isSending = false;
       }
+    },
+    getEmailErrorMessage(error) {
+      const status = Number(error && error.status);
+      const rawText = (error && (error.text || error.message)) || "";
+      const text = String(rawText).trim();
+      const textLower = text.toLowerCase();
+
+      if (
+        status === 412 &&
+        (textLower.includes("invalid grant") || textLower.includes("outlook"))
+      ) {
+        return "O servico de e-mail esta desconectado no EmailJS (Outlook Invalid grant). Reconecte a conta Outlook no painel do EmailJS e tente novamente.";
+      }
+
+      if (status === 403) {
+        return "A requisicao foi bloqueada pelo EmailJS (403). Verifique se o dominio do portfolio esta liberado em Allowed Origins e se a public key esta correta.";
+      }
+
+      if (status === 400) {
+        return "Falha de configuracao no EmailJS (400). Confira Service ID, Template ID e variaveis do template.";
+      }
+
+      if (status === 429) {
+        return "Muitas tentativas em pouco tempo (429). Aguarde alguns segundos e tente novamente.";
+      }
+
+      if (text) {
+        return `Nao foi possivel enviar agora. Detalhe: ${text}`;
+      }
+
+      return "Nao foi possivel enviar agora. Tente novamente em alguns minutos.";
+    },
+    sendByMailto() {
+      const subject = this.formData.name
+        ? `Contato portfolio - ${this.formData.name}`
+        : "Contato portfolio";
+
+      const body = [
+        `Nome: ${this.formData.name || "(nao informado)"}`,
+        `E-mail: ${this.formData.email || "(nao informado)"}`,
+        "",
+        this.formData.message || "",
+      ].join("\n");
+
+      const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailtoLink;
     },
     resetForm() {
       this.formData.name = "";
@@ -123,6 +203,9 @@ export default {
       this.formData.message = "";
       this.isValid = false;
       this.$refs.formRef.reset();
+      if (this.$refs.formRef.resetValidation) {
+        this.$refs.formRef.resetValidation();
+      }
     },
   },
 };

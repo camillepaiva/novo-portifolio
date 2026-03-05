@@ -25,6 +25,7 @@
         :tecnologias="project.tecnologias"
         :impactos="project.impactos"
         :linkProjeto="project.linkProjeto"
+        :previewVersion="project.previewVersion"
         :linkGit="project.linkGit"
       />
     </section>
@@ -158,6 +159,7 @@ export default {
           ],
           imagens: [],
           linkProjeto: "https://self-service-lunch.vercel.app/",
+          previewVersion: "2026-03-05",
           linkGit: "https://github.com/CamillePaivaa/Self-Service-Lunch",
         },
       ],

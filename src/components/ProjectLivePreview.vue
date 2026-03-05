@@ -54,6 +54,10 @@ export default {
       type: String,
       default: "",
     },
+    previewVersion: {
+      type: String,
+      default: "",
+    },
     imagens: {
       type: Array,
       default: () => [],
@@ -91,14 +95,33 @@ export default {
         return "preview";
       }
     },
+    normalizedPreviewVersion() {
+      return this.previewVersion ? this.previewVersion.trim() : "";
+    },
+    screenshotTargetUrl() {
+      if (!this.normalizedPreviewUrl || !this.normalizedPreviewVersion) {
+        return this.normalizedPreviewUrl;
+      }
+
+      try {
+        const url = new URL(this.normalizedPreviewUrl);
+        url.searchParams.set("preview", this.normalizedPreviewVersion);
+        return url.toString();
+      } catch (error) {
+        return `${this.normalizedPreviewUrl}?preview=${encodeURIComponent(
+          this.normalizedPreviewVersion
+        )}`;
+      }
+    },
     screenshotProviders() {
-      if (!this.normalizedPreviewUrl) {
+      if (!this.screenshotTargetUrl) {
         return [];
       }
 
-      const encodedUrl = encodeURIComponent(this.normalizedPreviewUrl);
+      const encodedUrl = encodeURIComponent(this.screenshotTargetUrl);
+      const previewSeed = this.normalizedPreviewVersion || this.cacheSeed;
       return [
-        `https://s.wordpress.com/mshots/v1/${encodedUrl}?w=1400&h=900&date=${this.cacheSeed}`,
+        `https://s.wordpress.com/mshots/v1/${encodedUrl}?w=1400&h=900&date=${previewSeed}`,
         `https://image.thum.io/get/width/1400/noanimate/${encodedUrl}`,
       ];
     },
@@ -108,6 +131,10 @@ export default {
   },
   watch: {
     previewUrl() {
+      this.previewError = false;
+      this.previewSourceIndex = 0;
+    },
+    previewVersion() {
       this.previewError = false;
       this.previewSourceIndex = 0;
     },
